@@ -4,11 +4,10 @@ import { useContext } from "react";
 import { SignInContext } from "./Context";
 
 export const Avatar = ({users}) => {
-    const {signIn, setSignIn} = useContext(SignInContext)
-
+    const {signIn, setSignIn, signInData, parsed} = useContext(SignInContext)
     const friendList = []
     users.forEach((user) => {
-        if (user.name === signIn){
+        if (user.name === parsed){
             friendList.push(user)
         }
     })

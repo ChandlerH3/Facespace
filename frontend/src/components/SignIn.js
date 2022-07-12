@@ -12,26 +12,17 @@ export const SignIn = () => {
         }
 
     const [text, setText] = useState("")
-    const {signIn, setSignIn, users,data} = useContext(SignInContext)
+    const {signIn, setSignIn, users,signInData, parsed} = useContext(SignInContext)
     const handleSignIn = () =>{
         for(let i = 0; i < users.length; i ++){
             if (text.toLowerCase() === users[i].name.toLowerCase()){
                 setSignIn(text.charAt(0).toUpperCase() + text.slice(1).toLowerCase())
-                handleClick()
             }   
         }
         }
-        
     useEffect(() => {
             sessionStorage.setItem("User", JSON.stringify(signIn));
         }, [signIn]);
-        
-    useEffect(()=>{
-        if (JSON.parse(sessionStorage.getItem("User"))) {
-            handleClick()
-        }
-    }, [])
-
         
     return (
         <Title>
@@ -40,7 +31,7 @@ export const SignIn = () => {
                 <Form>
                     <Input placeholder="Your first name" type="text" onChange={(e)=>setText(e.target.value)}></Input>
                     <Button type="submit" value="Submit" onClick={async (e)=>{e.preventDefault(); 
-                        handleSignIn();
+                        return handleSignIn();
                     }}>Sign in</Button>
                 </Form>
             </Wrapper>

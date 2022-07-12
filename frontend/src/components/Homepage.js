@@ -5,16 +5,14 @@ import { useContext } from "react";
 import { SignInContext } from "./Context";
 
 export const Homepage = () => {
-    const {signIn, setSignIn, users} = useContext(SignInContext)
-
-    let data = sessionStorage.getItem("User")
-
+    const {signIn, setSignIn, users, signInData, parsed} = useContext(SignInContext)
+    
     return(
         <>
         <Wrapper>
             <P>Facespace</P>
-            { data && JSON.parse(data)  ? 
-            <P> Howdy, {JSON.parse(data)}</P> 
+            { signInData && parsed  ? 
+            <P> Howdy, {parsed}</P> 
             : <SignLink to="/signin">
                 <P>Sign In</P>
             </SignLink> 
