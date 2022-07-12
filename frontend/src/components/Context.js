@@ -4,9 +4,7 @@ export const SignInContext = createContext(null);
 export const SignInProvider = ({ children }) => {
     const [signIn, setSignIn] = useState(null);
     const [users, setUsers] = useState(null)
-    let signInData = sessionStorage.getItem("User")
-    let parsed = JSON.parse(signInData)
-    
+    const [signedIn, setSignedIn] = useState(null)
     
     useEffect(() => {
         fetch(`/api/users`)
@@ -23,8 +21,8 @@ export const SignInProvider = ({ children }) => {
             setSignIn,
             users,
             setUsers,
-            signInData,
-            parsed
+            signedIn,
+            setSignedIn
         }}
         >
         {children}

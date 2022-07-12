@@ -3,16 +3,21 @@ import { Link } from "react-router-dom";
 import { Main } from "./Main";
 import { useContext } from "react";
 import { SignInContext } from "./Context";
+import { useEffect } from "react";
 
 export const Homepage = () => {
-    const {signIn, setSignIn, users, signInData, parsed} = useContext(SignInContext)
-    
+    const {signedIn, setSignedIn, users, signInData, parsed} = useContext(SignInContext)
+    console.log(sessionStorage.getItem("User"))
+    useEffect(()=>{
+            setSignedIn(JSON.parse(sessionStorage.getItem("User")))
+        });
+        console.log(signedIn)
     return(
         <>
         <Wrapper>
             <P>Facespace</P>
-            { signInData && parsed  ? 
-            <P> Howdy, {parsed}</P> 
+            { signedIn  ? 
+            <P> Howdy, {signedIn}</P> 
             : <SignLink to="/signin">
                 <P>Sign In</P>
             </SignLink> 

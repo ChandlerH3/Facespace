@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import { useContext } from "react";
 import { SignInContext } from "./Context";
 import { useState } from "react";
-import { useEffect } from "react";
 
 export const SignIn = () => {
     let history = useHistory();
@@ -12,18 +11,16 @@ export const SignIn = () => {
         }
 
     const [text, setText] = useState("")
-    const {signIn, setSignIn, users,signInData, parsed} = useContext(SignInContext)
+    const {users} = useContext(SignInContext)
     const handleSignIn = () =>{
-        for(let i = 0; i < users.length; i ++){
-            if (text.toLowerCase() === users[i].name.toLowerCase()){
-                setSignIn(text.charAt(0).toUpperCase() + text.slice(1).toLowerCase())
+        for(let i = 0; i < users?.length; i ++){
+            if (text.toLowerCase() === users[i]?.name.toLowerCase()){
+                sessionStorage.setItem("User", JSON.stringify(users[i].name));
+                history.push("/")
             }   
         }
         }
-    useEffect(() => {
-            sessionStorage.setItem("User", JSON.stringify(signIn));
-        }, [signIn]);
-        
+
     return (
         <Title>
             <P onClick={handleClick}>Facespace</P>
