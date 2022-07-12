@@ -5,13 +5,13 @@ import { SignInContext } from "./Context";
 import { useState } from "react";
 
 export const SignIn = () => {
+    const [text, setText] = useState("")
+    const {users} = useContext(SignInContext)
     let history = useHistory();
     const handleClick = ()=>{
         history.push(`/`);
         }
 
-    const [text, setText] = useState("")
-    const {users} = useContext(SignInContext)
     const handleSignIn = () =>{
         for(let i = 0; i < users?.length; i ++){
             if (text.toLowerCase() === users[i]?.name.toLowerCase()){

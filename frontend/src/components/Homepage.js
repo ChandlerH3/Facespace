@@ -11,7 +11,6 @@ export const Homepage = () => {
     useEffect(()=>{
             setSignedIn(JSON.parse(sessionStorage.getItem("User")))
         });
-        console.log(signedIn)
     return(
         <>
         <Wrapper>
